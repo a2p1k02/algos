@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME}
-    PUBLIC src/main.cpp
+    PUBLIC src/main.cpp src/structures.hpp
 )
 
 target_sources(${PROJECT_NAME}
