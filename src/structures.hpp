@@ -30,18 +30,19 @@ namespace structures
                 return root == nullptr;
             }
 
-            [[noreturn]] void push_back(T _val)
+            void push_back(T _val)
             {
                 std::shared_ptr<node<T>> p = std::make_shared<node<T>>(_val);
                 if (is_empty()) {
                     root = p;
                     tail = p;
+                    return;
                 }
                 tail->next() = p;
                 tail = p;
             }
 
-            [[noreturn]] void print()
+            void print()
             {
                 if (is_empty()) throw std::runtime_error("list is empty");
                 auto p = this->root;
@@ -59,15 +60,15 @@ namespace structures
                 return p && p->data() == _val ? p : nullptr;
             }
 
-            [[noreturn]] void pop_front()
+            auto pop_front()
             {
                 if (is_empty()) throw std::runtime_error("list is empty");
                 std::shared_ptr<node<T>> p = this->root;
                 this->root = p->next();
-                p.reset();
+                return p;
             }
 
-            [[noreturn]] void pop_back()
+            auto pop_back()
             {
                 if (is_empty()) throw std::runtime_error("list is empty");
                 if (this->root == this->tail) {
@@ -77,8 +78,9 @@ namespace structures
                 std::shared_ptr<node<T>> p = this->root;
                 while (p->next() != this->tail) p = p->next();
                 p->next() = nullptr;
-                this->tail.reset();
+                this->tail = nullptr;
                 this->tail = p;
+                return p;
             }
 
             [[noreturn]] void erase(T _val)
@@ -129,7 +131,7 @@ namespace structures
         public:
             explicit linked_list() : root(nullptr), tail(nullptr) {}
 
-            [[noreturn]] void push_front(T _val)
+            void push_front(T _val)
             {
                 std::shared_ptr<node<T>> p = std::make_shared<node<T>>(_val);
                 p->next() = this->root;
@@ -138,7 +140,7 @@ namespace structures
                 this->root = p;
             }
 
-            [[noreturn]] void push_back(T _val)
+            void push_back(T _val)
             {
                 std::shared_ptr<node<T>> p = std::make_shared<node<T>>(_val);
                 p->prev() = this->tail;
@@ -184,17 +186,19 @@ namespace structures
                 return this->at(index);
             }
 
-            [[noreturn]] void erase(const int index)
+            void erase(const int index)
             {
                 auto p = this->at(index);
 
                 if (p == nullptr) throw std::runtime_error("element does not exist");
                 if (p->prev() == nullptr) {
                     pop_front();
+                    return;
                 }
 
                 if (p->next() == nullptr) {
                     pop_back();
+                    return;
                 }
 
                 auto left = p->prev();
@@ -226,7 +230,7 @@ namespace structures
                 right->prev() = p;
             }
 
-            [[noreturn]] void print()
+            void print()
             {
                 if (this->root == nullptr) throw std::runtime_error("list is empty");
                 auto p = this->root;
