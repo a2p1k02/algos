@@ -72,9 +72,14 @@ void double_linked_list_test()
 int main()
 {
     selection_sort_test();
+    std::cout << std::endl;
     fib_test(10);
+    std::cout << std::endl;
     qsort_test();
+    std::cout << std::endl;
     once_linked_list_test();
+    std::cout << std::endl;
     double_linked_list_test();
+    std::cout << std::endl;
     return 0;
 }
