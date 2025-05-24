@@ -1,4 +1,5 @@
-export module algos;
+#ifndef ALGOS_HPP
+#define ALGOS_HPP
 
 #include <algorithm>
 #include <vector>
@@ -20,7 +21,7 @@ namespace algos
             return smallest;
         }
 
-        export auto selection_sort(std::vector<int>& array)
+        auto selection_sort(std::vector<int>& array)
         {
             std::vector<int> sorted_array;
 
@@ -34,7 +35,7 @@ namespace algos
         }
     }
 
-    export void quick_sort(std::vector<int>& array, const int left = 0, int right = -1)
+    void quick_sort(std::vector<int>& array, const int left = 0, int right = -1)
     {
         if (right == -1) right = array.size() - 1;
         if (left >= right) return;
@@ -55,9 +56,11 @@ namespace algos
         quick_sort(array, start, right);
     }
 
-    export unsigned int fib(const int n)
+    unsigned int fib(const int n)
     {
         if (n <= 1) return n;
         return fib(n - 1) + fib(n - 2);
     }
 }
+
+#endif //ALGOS_HPP

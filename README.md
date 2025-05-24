@@ -1,12 +1,11 @@
 # algos
 
-I wanted to rewrite some algorithms with C++20 modules and std libs.
+I wanted to rewrite some algorithms with C++20 and std libs.
 
 ## Supported
 
 | Compiler | Status |
 |----------|--------|
 | MSVC     | ✅      |
-| GCC      | ❌      |
-| CLANG    | ❌      |
+| CLANG    | ✅      |
 

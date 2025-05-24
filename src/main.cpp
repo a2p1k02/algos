@@ -2,8 +2,7 @@
 #include <vector>
 
 #include "structures.hpp"
-
-import algos;
+#include "algos.hpp"
 
 void selection_sort_test()
 {
