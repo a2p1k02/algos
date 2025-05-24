@@ -36,7 +36,6 @@ namespace structures
                 if (is_empty()) {
                     root = p;
                     tail = p;
-                    return;
                 }
                 tail->next() = p;
                 tail = p;
@@ -44,7 +43,7 @@ namespace structures
 
             [[noreturn]] void print()
             {
-                if (is_empty()) return;
+                if (is_empty()) throw std::runtime_error("list is empty");
                 auto p = this->root;
                 while (p) {
                     std::cout << p->data() << " ";
@@ -62,7 +61,7 @@ namespace structures
 
             [[noreturn]] void pop_front()
             {
-                if (is_empty()) return;
+                if (is_empty()) throw std::runtime_error("list is empty");
                 std::shared_ptr<node<T>> p = this->root;
                 this->root = p->next();
                 p.reset();
@@ -70,10 +69,9 @@ namespace structures
 
             [[noreturn]] void pop_back()
             {
-                if (is_empty()) return;
+                if (is_empty()) throw std::runtime_error("list is empty");
                 if (this->root == this->tail) {
                     pop_front();
-                    return;
                 }
 
                 std::shared_ptr<node<T>> p = this->root;
@@ -85,13 +83,11 @@ namespace structures
 
             [[noreturn]] void erase(T _val)
             {
-                if (is_empty()) return;
+                if (is_empty()) throw std::runtime_error("list is empty");
                 if (this->root->data() == _val) {
                     pop_front();
-                    return;
                 } else if (this->tail->data() == _val) {
                     pop_back();
-                    return;
                 }
 
                 std::shared_ptr<node<T>> pr = this->root;
@@ -102,7 +98,7 @@ namespace structures
                     pr = pr->next();
                 }
                 if (!prn) {
-                    throw std::exception("element does not exist");
+                    throw std::runtime_error("element does not exist");
                 }
                 pr->next() = prn->next();
                 prn.reset();
@@ -132,6 +128,7 @@ namespace structures
         class linked_list {
         public:
             explicit linked_list() : root(nullptr), tail(nullptr) {}
+
             [[noreturn]] void push_front(T _val)
             {
                 std::shared_ptr<node<T>> p = std::make_shared<node<T>>(_val);
@@ -158,6 +155,7 @@ namespace structures
                 if (p != nullptr) p->prev() = nullptr;
                 else this->tail = nullptr;
                 this->root = p;
+                return p;
             }
 
             std::shared_ptr<node<T>> pop_back()
@@ -168,6 +166,7 @@ namespace structures
                 if (p != nullptr) p->next() = nullptr;
                 else this->root = nullptr;
                 this->tail = p;
+                return p;
             }
 
             std::shared_ptr<node<T>> at(const int index)
@@ -189,15 +188,13 @@ namespace structures
             {
                 auto p = this->at(index);
 
-                if (p == nullptr) return;
+                if (p == nullptr) throw std::runtime_error("element does not exist");
                 if (p->prev() == nullptr) {
                     pop_front();
-                    return;
                 }
 
                 if (p->next() == nullptr) {
                     pop_back();
-                    return;
                 }
 
                 auto left = p->prev();
@@ -213,13 +210,11 @@ namespace structures
                 auto right = at(index);
                 if (right == nullptr) {
                     push_back(_val);
-                    return;
                 }
 
                 auto left = right->prev();
                 if (left == nullptr) {
                     push_front(_val);
-                    return;
                 }
 
                 auto p = std::make_shared<node<T>>(_val);
@@ -231,7 +226,7 @@ namespace structures
 
             [[noreturn]] void print()
             {
-                if (this->root == nullptr) return;
+                if (this->root == nullptr) throw std::runtime_error("list is empty")
                 auto p = this->root;
                 while (p) {
                     std::cout << p->data() << " ";
