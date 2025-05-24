@@ -205,16 +205,18 @@ namespace structures
                 p.reset();
             }
 
-            [[noreturn]] void insert(const T _val, const int index)
+            void insert(const T _val, const int index)
             {
                 auto right = at(index);
                 if (right == nullptr) {
                     push_back(_val);
+                    return;
                 }
 
                 auto left = right->prev();
                 if (left == nullptr) {
                     push_front(_val);
+                    return;
                 }
 
                 auto p = std::make_shared<node<T>>(_val);
@@ -226,7 +228,7 @@ namespace structures
 
             [[noreturn]] void print()
             {
-                if (this->root == nullptr) throw std::runtime_error("list is empty")
+                if (this->root == nullptr) throw std::runtime_error("list is empty");
                 auto p = this->root;
                 while (p) {
                     std::cout << p->data() << " ";

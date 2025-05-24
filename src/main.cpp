@@ -71,10 +71,10 @@ void double_linked_list_test()
 
 int main()
 {
-    //selection_sort_test();
-    //fib_test(100);
-    //qsort_test();
-    //once_linked_list_test();
+    selection_sort_test();
+    fib_test(10);
+    qsort_test();
+    once_linked_list_test();
     double_linked_list_test();
     return 0;
 }
