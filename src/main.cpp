@@ -3,6 +3,7 @@
 
 #include "structures.hpp"
 #include "algos.hpp"
+#include "hash_table.hpp"
 
 void selection_sort_test()
 {
@@ -69,6 +70,23 @@ void double_linked_list_test()
     list.print();
 }
 
+void hash_table_test()
+{
+    algos::hash_table<int, std::string> table;
+    table.insert(1, "1");
+    table.insert(2, "2");
+    table.insert(3, "3");
+    table.insert(4, "4");
+    table.insert(5, "5");
+    table.insert(6, "6");
+    table.insert(7, "7");
+    table.insert(8, "8");
+    std::cout << table.get(5) << std::endl;
+    std::cout << table.get(7) << std::endl;
+    std::cout << table.get(8) << std::endl;
+    std::cout << table.get(3) << std::endl;
+}
+
 int main()
 {
     selection_sort_test();
@@ -80,6 +98,8 @@ int main()
     once_linked_list_test();
     std::cout << std::endl;
     double_linked_list_test();
+    std::cout << std::endl;
+    hash_table_test();
     std::cout << std::endl;
     return 0;
 }
