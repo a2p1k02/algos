@@ -98,10 +98,8 @@ int main()
     once_linked_list_test();
     std::cout << std::endl;
     double_linked_list_test();
-<<<<<<< HEAD
-    hash_table_test();
-=======
     std::cout << std::endl;
->>>>>>> 07ee2db52041b5123917447c833fcc9c051526a5
+    hash_table_test();
+    std::cout << std::endl;
     return 0;
 }
